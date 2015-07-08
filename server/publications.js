@@ -5,3 +5,4 @@ Meteor.publish('posts', function(options){
 Meteor.publish('comments', function(options){
   return Comments.find({});
 });
+ 
