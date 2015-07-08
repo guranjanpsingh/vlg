@@ -1,0 +1,13 @@
+<template name="post">
+  <div class="panel panel-default">
+  <div class="panel-body">
+    <a href="#" class="voteUp"><span class="glyphicon glyphicon-thumbs-up {{upvotedClass}}"></span></a>{{likes}}
+    <a href="#" class="voteDown"><span class="glyphicon glyphicon-thumbs-down {{downvotedClass}}"></span></a>{{dislikes}}
+    {{post}}
+  </div>
+  <div class="panel-footer">
+    <span class="glyphicon glyphicon-time"></span> {{posted}} by {{postedBy}}
+      <a href="{{pathFor 'postPage'}}">{{comments}} comments</a>.
+  </div>
+</div>
+</template>
