@@ -1,5 +1,18 @@
 <template name="postList">
-  {{#each posts}}
-    {{>post}}
-  {{/each}}
+  <div class="col-sm-12 col-md-12 col-lg-9">
+		<form onsubmit="return false;" class="well padding-bottom-10" method="post">
+			<textarea placeholder="What are you thinking?" class="form-control" rows="2"></textarea>
+			<div class="margin-top-10">
+				<button class="btn btn-sm btn-primary pull-right" type="submit">
+	        Post
+				</button>
+        &nbsp;
+			</div>
+		</form>
+
+    {{#each posts}}
+      {{>post}}
+    {{/each}}
+
+  </div>
 </template>
