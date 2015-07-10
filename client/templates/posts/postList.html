@@ -2,4 +2,12 @@
   {{#each posts}}
     {{>post}}
   {{/each}}
+
+  {{#if morePosts}}
+    <div class="container well col-sm-4 text-center col-sm-offset-4" align="center"><a href="#" class="load-more">Click to load more</a></div>
+  {{else}}
+    {{#unless ready}}
+      {{>spinner}}
+    {{/unless}}
+  {{/if}}
 </template>

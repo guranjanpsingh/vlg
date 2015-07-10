@@ -1,13 +1,14 @@
-Meteor.publish('posts', function() {
+Meteor.publish('posts', function(options) {
   var self = this, postHandle = null;
 
   var initializing = true;
 
-  postHandle = Posts.find({}).observeChanges({
+  postHandle = Posts.find({}, options).observeChanges({
     added: function(id, post) {
       if (initializing){
-          console.log('got a new post');
           self.added('posts', id, post);
+      } else {
+        self.added('posts', id, post);
       }
     },
     changed: function(id, fields) {
