@@ -1,5 +1,10 @@
 <template name="postList">
-  {{#each posts}}
+  {{newData}}
+  <div class="text-center">
+    <a href="#" class="reLoad"><span class="glyphicon glyphicon-repeat"></span>reload</a>
+  </div>
+
+  {{#each displayedPosts}}
     {{>post}}
   {{/each}}
 
