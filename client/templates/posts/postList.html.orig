@@ -1,4 +1,5 @@
 <template name="postList">
+<<<<<<< HEAD
   <div class="col-sm-12 col-md-12 col-lg-9">
 		<form onsubmit="return false;" class="well padding-bottom-10" method="post">
 			<textarea placeholder="What are you thinking?" class="form-control" rows="2"></textarea>
@@ -14,6 +15,12 @@
       {{>post}}
     {{/each}}
 
+  </div>
+=======
+  {{#each posts}}
+    {{>post}}
+  {{/each}}
+
   {{#if morePosts}}
     <div class="container well col-sm-4 text-center col-sm-offset-4" align="center"><a href="#" class="load-more">Click to load more</a></div>
   {{else}}
@@ -21,6 +28,5 @@
       {{>spinner}}
     {{/unless}}
   {{/if}}
-
-  </div>
+>>>>>>> master
 </template>

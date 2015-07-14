@@ -13,5 +13,8 @@ aldeed:collection2
 momentjs:moment
 ian:accounts-ui-bootstrap-3
 accounts-password
-sacha:spin
+<<<<<<< HEAD
 fortawesome:fontawesome
+=======
+sacha:spin
+>>>>>>> master
