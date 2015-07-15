@@ -1,12 +1,18 @@
 <template name="postList">
-  {{newData}}
-  <div class="text-center">
-    <a href="#" class="reLoad"><span class="glyphicon glyphicon-repeat"></span>reload</a>
-  </div>
+  <div class="col-sm-12 col-md-12 col-lg-9">
+		<form class="well padding-bottom-10" method="post">
+			<textarea name="post" placeholder="What are you thinking?" class="form-control" rows="2"></textarea>
+			<div class="margin-top-10">
+				<button class="btn btn-sm btn-primary pull-right submitPost" type="submit">
+	        Post
+				</button>
+        &nbsp;
+			</div>
+		</form>
 
-  {{#each displayedPosts}}
-    {{>post}}
-  {{/each}}
+    {{#each displayedPosts}}
+      {{>post}}
+    {{/each}}
 
   {{#if morePosts}}
     <div class="container well col-sm-4 text-center col-sm-offset-4" align="center"><a href="#" class="load-more">Click to load more</a></div>
@@ -15,4 +21,6 @@
       {{>spinner}}
     {{/unless}}
   {{/if}}
+
+  </div>
 </template>

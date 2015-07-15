@@ -2,32 +2,4 @@
   <div class="panel panel-default">
     {{>post}}
   </div>
-  {{#if count != 0}}
-    <div class="panel panel-default">
-      <ul class="list-group">
-        {{#each comments}}
-          <li class="list-group-item ">
-            <a href="#" class="voteUp"><span class="glyphicon glyphicon-thumbs-up {{upvotedClass}}"></span></a>{{likes}}
-            <a href="#" class="voteDown"><span class="glyphicon glyphicon-thumbs-down {{downvotedClass}}"></span></a>{{dislikes}}
-            {{comment}}.
-            <span class="pull-right">
-              <span class="glyphicon glyphicon-time "></span>{{postedMomemnt}}
-            </span>
-          </li>
-        {{/each}}
-      </ul>
-    </div>
-  {{/if}}
-  {{#if currentUser}}
-    <form class="form-horizontal">
-      <div class="form-group col-sm-8">
-        <textarea class="form-control" name="comment"></textarea>
-      </div>
-      <div class="form-group col-sm-8">
-        <button type="submit" class="btn btn-default">Submit</button>
-      </div>
-    </form>
-  {{else}}
-    <h1>Please log in to post a comment.</h1>
-  {{/if}}
 </template>

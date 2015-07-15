@@ -1,13 +1,66 @@
 <template name="post">
-  <div class="panel panel-default">
-  <div class="panel-body">
-    <a href="#" class="voteUp"><span class="glyphicon glyphicon-thumbs-up {{upvotedClass}}"></span></a>{{likes}}
-    <a href="#" class="voteDown"><span class="glyphicon glyphicon-thumbs-down {{downvotedClass}}"></span></a>{{dislikes}}
-    {{post}}
-  </div>
-  <div class="panel-footer">
-    <span class="glyphicon glyphicon-time"></span> {{posted}} by {{postedBy}}
-      <a href="{{pathFor 'postPage'}}">{{comments}} comments</a>.
-  </div>
-</div>
+
+	<span class="timeline-seperator text-center"> <span>{{posted}}</span>
+		<div class="btn-group pull-right">
+			<a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);"><span class="caret single"></span></a>
+			<ul class="dropdown-menu text-left">
+				<li>
+					<a href="javascript:void(0);">Hide this post</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">Hide future posts from this user</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">Mark as spam</a>
+				</li>
+			</ul>
+		</div>
+  </span>
+
+  <div class="chat-body no-padding profile-message">
+		<ul>
+			<li class="message">
+				<img class="online" src="/public/images/silhouette.jpeg">
+				<span class="message-text"> <a class="username" href="javascript:void(0);">{{postedBy}}</a> {{post}} </span>
+				<ul class="list-inline font-xs message-bar">
+					<li>
+						<a class="text-success {{upvotedClass}}" href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like ({{likes}})</a>
+					</li>
+          <li>
+						<a class="text-danger {{downvotedClass}}" href="javascript:void(0);"><i class="fa fa-thumbs-down"></i> Dislike ({{dislikes}})</a>
+					</li>
+					<li>
+						<a class="text-muted" href="{{pathFor 'postPage' _id=this._id}}">Show All Comments ({{comments}})</a>
+					</li>
+					<li>
+						<a class="text-primary" href="javascript:void(0);">Edit</a>
+					</li>
+					<li>
+						<a class="text-danger" href="javascript:void(0);">Delete</a>
+					</li>
+				</ul>
+			</li>
+
+			{{#each comments}}
+				<li class="message message-reply">
+					<img class="online" src="img/avatars/3.png">
+					<span class="message-text"> <a class="username" href="javascript:void(0);">{{postedBy}}</a> {{comment}}</span>
+					<ul class="list-inline font-xs">
+						<li>
+							<a class="text-muted" href="javascript:void(0);">1 minute ago </a>
+						</li>
+						<li>
+							<a class="text-success" href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like</a>
+						</li>
+					</ul>
+				</li>
+			{{/each}}
+			<li class="message message-reply">
+				<form class="padding-bottom-10" method="post" name="comment">
+					<input type="text" placeholder="Type and enter" class="form-control input-xs" name="comment">
+				</form>
+			</li>
+		</ul>
+	</div>
+
 </template>
