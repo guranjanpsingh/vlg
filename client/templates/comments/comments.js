@@ -1,9 +1,6 @@
-Template.postPage.helpers({
-  postedMomemnt: function(){
+Template.comment.helpers({
+  postedRelative: function(){
     return moment(this.postedOn).fromNow();
-  },
-  count: function(){
-    return Comments.find({postID: this._id}).count();
   },
   upvotedClass: function() {
     var userId = Meteor.userId();
@@ -22,24 +19,8 @@ Template.postPage.helpers({
     }
   }
 });
-
-Template.postPage.events({
-  'submit form': function(e){
-    e.preventDefault();
-    var currentUserID = Meteor.userID;
-    var comment = {
-      comment: $(e.target).find('[name=comment]').val(),
-      postID: this._id,
-      likes: 0,
-      user: Meteor.userId(),
-      dislikes: 0
-    }
-    Comments.insert(comment);
-    Posts.update(this._id, {$inc: {comments: 1}});
-    Router.go('postPage', {_id: this._id});
-    $('[name=comment]').val('');
-  },
-  'click .voteUp': function(e){
+Template.comment.events({
+  'click .voteUpComment': function(e){
     e.preventDefault;
     var comment = Comments.findOne(this._id);
     if (!Meteor.user()){
@@ -70,7 +51,7 @@ Template.postPage.events({
       )
     }
   },
-  'click .voteDown': function(e){
+  'click .voteDownComment': function(e){
     e.preventDefault;
     var comment = Comments.findOne(this._id);
     if (!Meteor.user()){

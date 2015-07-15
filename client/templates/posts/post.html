@@ -24,13 +24,13 @@
 				<span class="message-text"> <a class="username" href="javascript:void(0);">{{postedBy}}</a> {{post}} </span>
 				<ul class="list-inline font-xs message-bar">
 					<li>
-						<a class="text-success {{upvotedClass}}" href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like ({{likes}})</a>
+						<a class="text-success {{upvotedClass}} voteUpPost" href="#"><i class="fa fa-thumbs-up"></i> Like ({{likes}})</a>
 					</li>
           <li>
-						<a class="text-danger {{downvotedClass}}" href="javascript:void(0);"><i class="fa fa-thumbs-down"></i> Dislike ({{dislikes}})</a>
+						<a class="text-danger {{downvotedClass}} voteDownPost" href="#"><i class="fa fa-thumbs-down"></i> Dislike ({{dislikes}})</a>
 					</li>
 					<li>
-						<a class="text-muted" href="{{pathFor 'postPage' _id=this._id}}">Show All Comments ({{comments}})</a>
+						<a class="text-muted" href="{{pathFor 'postPage' _id=this._id}}">Show All Comments ({{commentsCount}})</a>
 					</li>
 					<li>
 						<a class="text-primary" href="javascript:void(0);">Edit</a>
@@ -42,18 +42,7 @@
 			</li>
 
 			{{#each comments}}
-				<li class="message message-reply">
-					<img class="online" src="img/avatars/3.png">
-					<span class="message-text"> <a class="username" href="javascript:void(0);">{{postedBy}}</a> {{comment}}</span>
-					<ul class="list-inline font-xs">
-						<li>
-							<a class="text-muted" href="javascript:void(0);">1 minute ago </a>
-						</li>
-						<li>
-							<a class="text-success" href="javascript:void(0);"><i class="fa fa-thumbs-up"></i> Like</a>
-						</li>
-					</ul>
-				</li>
+				{{>comment}}
 			{{/each}}
 			<li class="message message-reply">
 				<form class="padding-bottom-10" method="post" name="comment">

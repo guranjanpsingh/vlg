@@ -57,7 +57,6 @@ Template.postList.events({
     template.loadedTime.set(new Date());
   },
   'submit form': function(e){
-      alert('hello');
       e.preventDefault();
       var user;
       if(Meteor.user()){
@@ -71,7 +70,7 @@ Template.postList.events({
         postedBy: user,
         likes: 0,
         dislikes: 0,
-        comments: 0,
+        commentsCount: 0,
         views: 0,
         fb_shares: 0,
         tweets: 0

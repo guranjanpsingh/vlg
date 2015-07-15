@@ -1,0 +1,17 @@
+<template name="comment">
+  <li class="message message-reply">
+    <img class="online" src="img/avatars/3.png">
+    <span class="message-text"> <a class="username" href="javascript:void(0);">{{postedBy}}</a> {{comment}}</span>
+    <ul class="list-inline font-xs">
+      <li>
+        <a class="text-muted" href="#">{{postedRelative}}</a>
+      </li>
+      <li>
+        <a class="text-success voteUpComment  {{upvotedClass}}" href="#"><i class="fa fa-thumbs-up"></i> Like ({{likes}})</a>
+      </li>
+      <li>
+        <a class="text-danger {{downvotedClass}} voteDownComment" href="#"><i class="fa fa-thumbs-down"></i> Dislike ({{dislikes}})</a>
+      </li>
+    </ul>
+  </li>
+</template>

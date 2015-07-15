@@ -2,6 +2,9 @@ Template.post.helpers({
   posted: function(){
     return moment(this.postedOn).format("hh:mmA MMMM Do, YYYY");
   },
+  postedRelative: function(){
+    return moment(this.postedOn).fromNow();
+  },
   upvotedClass: function() {
     var userId = Meteor.userId();
     if (userId && !_.include(this.likedBy, userId)) {
@@ -19,7 +22,16 @@ Template.post.helpers({
     }
   },
   comments: function(){
-    return Comments.find({postID: this._id}, {sort: {postedOn: -1},limit: 2});
+    var limit;
+    var sortOrder;
+    if(Router.current().route.getName() == "postPage"){
+      limit = Comments.find({postID: this._id}).count();
+      sortOrder =1;
+    } else {
+      limit = 2;
+      sortOrder = -1;
+    }
+    return Comments.find({postID: this._id}, {sort: {postedOn: sortOrder},limit: limit});
   }
 });
 Template.post.events({
@@ -39,14 +51,15 @@ Template.post.events({
     }
     Comments.insert(comment, function(error){
       if(!error){
-        Posts.update(this._id, {$inc: {comments: 1}});
+        Posts.update(this._id, {$inc: {commentsCount: 1}});
         $('[name=comment]').val('');
       }
     });
   },
-  'click .voteUp': function(e){
+  'click .voteUpPost': function(e){
     e.preventDefault;
-    var post = Posts.findOne(this._id);
+    console.log('downVote');
+    var post = Posts.findOne(Router.current().params._id);
     if (!Meteor.user()){
       return throwError('Please log in to vote.');
     }
@@ -75,8 +88,9 @@ Template.post.events({
       )
     }
   },
-  'click .voteDown': function(e){
+  'click .voteDownPost': function(e){
     e.preventDefault;
+    console.log('down vote');
     var post = Posts.findOne(this._id);
     if (!Meteor.user()){
       return throwError('Please log in to vote.');
