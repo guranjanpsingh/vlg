@@ -21,7 +21,11 @@
 		<ul>
 			<li class="message">
 				<img class="online" src="/public/images/silhouette.jpeg">
-				<span class="message-text"> <a class="username" href="javascript:void(0);">{{postedBy}}</a> {{post}} </span>
+				<span class="message-text">
+					<a class="username" href="javascript:void(0);">{{postedBy}}</a>
+					<input id="{{_id}}" class="postBody form-control" name="postBody" type="text" value="{{post}}" disabled="disabled" />
+					<button class="btn btn-xs btn-primary postUpdate">Save</button>
+				</span>
 				<ul class="list-inline font-xs message-bar">
 					<li>
 						<a class="text-success {{upvotedClass}} voteUpPost" href="#"><i class="fa fa-thumbs-up"></i> Like ({{likes}})</a>
@@ -33,10 +37,10 @@
 						<a class="text-muted" href="{{pathFor 'postPage' _id=this._id}}">Show All Comments ({{commentsCount}})</a>
 					</li>
 					<li>
-						<a class="text-primary" href="javascript:void(0);">Edit</a>
+						<a class="text-primary editPost" href="#">Edit</a>
 					</li>
 					<li>
-						<a class="text-danger" href="javascript:void(0);">Delete</a>
+						<a class="text-danger deletePost" href="#">Delete</a>
 					</li>
 				</ul>
 			</li>

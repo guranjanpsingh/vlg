@@ -361,3 +361,8 @@ textarea{
 .message-bar {
     margin-left: 65px;
 }
+input[name="postBody"]:disabled {
+  border: none;
+  background: transparent;
+  color: #000;
+}

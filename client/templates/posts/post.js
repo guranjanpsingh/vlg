@@ -119,5 +119,47 @@ Template.post.events({
         }
       )
     }
+  },
+  'click .deletePost': function(e){
+    e.preventDefault;
+    if (!Meteor.userId()){
+      return throwError("You must be logged in to delete posts");
+    }
+    if(this.postedBy === Meteor.userId().username){
+      if(confirm('Are you sure you want to delete this post?')){
+        Posts.remove(this._id);
+      } else {
+        return throwError('Unable to delte post');
+      }
+    } else {
+      return throwError("You don't have the permissions to delete this post?")
+    }
+  },
+  'click .editPost': function(e){
+    e.preventDefault;
+    var element = $("#"+ this._id);
+    if (!Meteor.userId()){
+      return throwError("You must be logged in to edit posts");
+    }
+    element.prop("disabled", false);
+    element.focus();
+    element.parent().find(".postUpdate").slideDown();
+    console.log(  element.val());
+  },
+  'click .postUpdate': function(e){
+    e.preventDefault;
+    var post = Posts.find(this._id);
+    var element = $("#"+ this._id);
+    var newContent = element.val();
+    if (!Meteor.userId()){
+      return throwError("You must be logged in to edit posts");
+    }
+    Posts.update(this._id,{$set: {post: newContent}});
+    element.parent().find(".postUpdate").hide();
+    element.prop("disabled", true);
   }
+});
+
+Template.post.onRendered(function(){
+  $('.postUpdate').hide();
 })

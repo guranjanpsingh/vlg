@@ -8,5 +8,5 @@ Template.error.onRendered(function() {
   var error = this.data;
   Meteor.setTimeout(function () {
     Errors.remove(error._id);
-  }, 1500);
+  }, 3000);
 });

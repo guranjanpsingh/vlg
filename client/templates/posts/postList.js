@@ -60,7 +60,7 @@ Template.postList.events({
       e.preventDefault();
       var user;
       if(Meteor.user()){
-        user = Meteor.user().username;
+        user = Meteor.userId().username;
       }
       else{
         user = ''
