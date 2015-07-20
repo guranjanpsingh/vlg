@@ -5,13 +5,19 @@
 			<a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);"><span class="caret single"></span></a>
 			<ul class="dropdown-menu text-left">
 				<li>
-					<a href="javascript:void(0);">Hide this post</a>
+					<a class="text-primary editPost" href="#">Edit</a>
 				</li>
 				<li>
-					<a href="javascript:void(0);">Hide future posts from this user</a>
+					<a class="text-danger deletePost" href="#">Delete</a>
 				</li>
 				<li>
-					<a href="javascript:void(0);">Mark as spam</a>
+					<a href="#">Hide this post</a>
+				</li>
+				<li>
+					<a href="#">Hide future posts from this user</a>
+				</li>
+				<li>
+					<a href="#">Mark as spam</a>
 				</li>
 			</ul>
 		</div>
@@ -21,10 +27,10 @@
 		<ul>
 			<li class="message">
 				<img class="online" src="/public/images/silhouette.jpeg">
-				<span class="message-text">
-					<a class="username" href="javascript:void(0);">{{postedBy}}</a>
-					<input id="{{_id}}" class="postBody form-control" name="postBody" type="text" value="{{post}}" disabled="disabled" />
-					<button class="btn btn-xs btn-primary postUpdate">Save</button>
+				<span class="message-text col-md-11">
+					<a class="username" href="#">{{postedBy}}</a>
+					<p name="{{_id}}">{{post}}</p>
+					<textarea id="{{_id}}" class="postBody form-control" name="postBody" style="display:none;">{{post}}</textarea>
 				</span>
 				<ul class="list-inline font-xs message-bar">
 					<li>
@@ -35,12 +41,6 @@
 					</li>
 					<li>
 						<a class="text-muted" href="{{pathFor 'postPage' _id=this._id}}">Show All Comments ({{commentsCount}})</a>
-					</li>
-					<li>
-						<a class="text-primary editPost" href="#">Edit</a>
-					</li>
-					<li>
-						<a class="text-danger deletePost" href="#">Delete</a>
 					</li>
 				</ul>
 			</li>

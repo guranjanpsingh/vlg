@@ -32,6 +32,9 @@ Template.post.helpers({
       sortOrder = -1;
     }
     return Comments.find({postID: this._id}, {sort: {postedOn: sortOrder},limit: limit});
+  },
+  commentsCount: function(){
+    return Comments.find({postID: this._id}).count();
   }
 });
 Template.post.events({
@@ -58,8 +61,8 @@ Template.post.events({
   },
   'click .voteUpPost': function(e){
     e.preventDefault;
-    console.log('downVote');
-    var post = Posts.findOne(Router.current().params._id);
+    console.log('upVote');
+    var post = Posts.findOne(this._id);
     if (!Meteor.user()){
       return throwError('Please log in to vote.');
     }
@@ -138,28 +141,31 @@ Template.post.events({
   'click .editPost': function(e){
     e.preventDefault;
     var element = $("#"+ this._id);
+    $("p[name=" + this._id + "]").hide();
+    element.css("display", "inline");
     if (!Meteor.userId()){
       return throwError("You must be logged in to edit posts");
     }
-    element.prop("disabled", false);
     element.focus();
-    element.parent().find(".postUpdate").slideDown();
-    console.log(  element.val());
   },
-  'click .postUpdate': function(e){
-    e.preventDefault;
-    var post = Posts.find(this._id);
+  'keypress .postBody': function(e){
     var element = $("#"+ this._id);
-    var newContent = element.val();
-    if (!Meteor.userId()){
-      return throwError("You must be logged in to edit posts");
+    console.log('h' + e.which);
+    if(e.which === 13){
+      e.preventDefault;
+      var post = Posts.find(this._id);
+      var newContent = element.val();
+      if (!Meteor.userId()){
+        return throwError("You must be logged in to edit posts");
+      }
+      Posts.update(this._id,{$set: {post: newContent}});
+      element.css("display", "none");
+      $("p[name=" + this._id + "]").show();
     }
-    Posts.update(this._id,{$set: {post: newContent}});
-    element.parent().find(".postUpdate").hide();
-    element.prop("disabled", true);
+  },
+  'blur .postBody': function(e){
+    var element = $("#"+ this._id);
+    element.css("display", "none");
+    $("p[name=" + this._id + "]").show();
   }
 });
-
-Template.post.onRendered(function(){
-  $('.postUpdate').hide();
-})

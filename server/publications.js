@@ -1,5 +1,5 @@
-Meteor.publish('posts', function(options) {
-  return Posts.find({}, options);
+Meteor.publish('posts', function(limit) {
+  return Posts.find({}, {sort: {postedOn: -1}, limit:limit});
 });
 
 Meteor.publish('comments', function(options){
