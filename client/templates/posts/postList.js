@@ -85,3 +85,10 @@ Template.postList.events({
       $('.reLoad').click();
   }
  });
+
+
+ $(window).scroll(function () {
+    if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+       Session.set("limit", Session.get("limit") + 7);
+    }
+ });
