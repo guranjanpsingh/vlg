@@ -128,7 +128,9 @@ Template.post.events({
     if (!Meteor.userId()){
       return throwError("You must be logged in to delete posts");
     }
-    if(this.postedBy === Meteor.userId().username){
+    if(this.postedBy === Meteor.user().username){
+      console.log(this.postedBy);
+      console.log(Meteor.user().username);
       if(confirm('Are you sure you want to delete this post?')){
         Posts.remove(this._id);
       } else {
