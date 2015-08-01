@@ -82,6 +82,7 @@ Template.postList.events({
         tweets: 0
       }
       Posts.insert(post);
+      $(e.target).find('[name=post]').val('');
       $('.reLoad').click();
   }
  });
